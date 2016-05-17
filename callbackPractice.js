@@ -28,7 +28,12 @@ and what you should write is the sayHi function that makes the code above work,
   
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
-first(names, function(firstName){
+
+var first = function(names, cb) {
+  cb(names[0]);
+}
+
+first(names, function(firstName) {
   console.log('The first name in names is ' + firstName)
 });
 
@@ -40,6 +45,11 @@ first(names, function(firstName){
 
 
   //Code Here for last
+
+var last = function(names, cb) {
+  cb(names[names.length-1]);
+
+}
 
 last(names, function(lastName){
   console.log('The last name in names is ' + lastName);
@@ -57,6 +67,11 @@ last(names, function(lastName){
 
 
   //Code Here for multiply
+var multiply = function(x, y, cb) {
+  cb(x * y);
+}
+
+
 
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
@@ -69,8 +84,14 @@ multiply(4, 3, function(answer){
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
 
 
-
-
+var contains = function(names, str, cb) {
+  for (var i = 0; i < names.length; i++) {
+    if (names[i] === str) {
+      return cb(true);
+    }
+      return cb(false);
+  }
+}
 
   //Code Here for contains
 
@@ -93,6 +114,18 @@ contains(names, 'Colt', function(result){
 
     //Code Here for uniq
 
+function uniq(arr) {
+  var uniqArr = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    if (uniqArr.indexOf(array[i]) === -1) {
+      uniqArr.push(array[i]) }
+      return uniqArr;
+      }
+    }
+  }
+}
+
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
 });
@@ -102,7 +135,11 @@ uniq(names, function(uniqArr){
 
 
 /* NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM ---- NEXT PROBLEM */
-
+function each (names, cb) {
+  for (var i = 0; i < names.length; i++) {
+    cb(names[i], i);
+  }
+}
 
 
 
@@ -120,7 +157,13 @@ each(names, function(item, indice){
 
 
 
-
+function getUserById(arr, idTag, cb){
+  for(var i = 0; i < arr.length; i++) {
+      if(arr[i].id === idTag) {
+        cb(arr[i]);
+      }
+    }
+  }
 
  //code here for getUserById
 
